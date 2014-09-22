@@ -18,7 +18,16 @@ import com.bitplan.w3ccheck.W3CValidator.Body.ValidationResponse.Warnings.Valida
  */
 public class TestW3CValidator {
 
+	/**
+	 * url of the Validator Service
+	 * if you'd like to run the tests against your own installation you might want to modify this
+	 */
 	public static final String url="http://validator.w3.org/check";
+	
+	/**
+	 * test the w3cValidator interface with some html code
+	 * @throws Exception
+	 */
 	@Test
 	public void testW3CValidator() throws Exception {
 		String preamble="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n" + 

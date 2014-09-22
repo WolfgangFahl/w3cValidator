@@ -34,10 +34,11 @@ public class TestW3CValidator {
 		String[] htmls = {
 				preamble+
 				"    <div>\n"+
-				footer
+				footer,
+				"<!DOCTYPE html><html><head><title>test W3CChecker</title></head><body><div></body></html>"
 		};
-		int[] expectedErrs={1};
-		int[] expectedWarnings={1};
+		int[] expectedErrs={1,2};
+		int[] expectedWarnings={1,2};
 		int index=0;
 		for (String html : htmls) {
 			W3CValidator checkResult = W3CValidator.check(url, html);
@@ -48,13 +49,15 @@ public class TestW3CValidator {
 			assertTrue("if first is a string, than moxy is not activated",first instanceof ValidationError);
 			//System.out.println(first.getClass().getName());
 			//System.out.println(first);
+			System.out.println("Validation result for test "+index+":");
 			for (ValidationError err:errlist) {
-				System.out.println(err.toString());
+				System.out.println("\t"+err.toString());
 			}
 			assertTrue(warnlist.size()>=expectedWarnings[index]);
 			for (ValidationWarning warn:warnlist) {
-				System.out.println(warn.toString());
+				System.out.println("\t"+warn.toString());
 			}
+			System.out.println();
 			index++;
 		}
 	} // testW3CValidator

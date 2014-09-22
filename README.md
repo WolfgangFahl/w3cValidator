@@ -21,10 +21,11 @@ This java Library calls the W3C Validator according to
 
 ## Example:
 
+```
   public static final String url="http://validator.w3.org/check";
   String html="<!DOCTYPE html><html><head><title>test W3CChecker</title></head><body><div></body></html>";
 	W3CValidator checkResult = W3CValidator.check(url, html);
-		
+```		
 
 ## Version history
 * 0.0.1 - 2014-09-22      : first published version

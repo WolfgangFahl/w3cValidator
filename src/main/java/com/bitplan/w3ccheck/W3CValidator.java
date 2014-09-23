@@ -29,27 +29,83 @@ import com.sun.jersey.multipart.FormDataBodyPart;
 import com.sun.jersey.multipart.FormDataMultiPart;
 
 /**
- * Wrapper for W3C Validator Soap responses see http://validator.w3.org/docs/api.html#requestformat
+ * Wrapper for W3C Validator Soap responses 
+ * see <a href="http://validator.w3.org/docs/api.html#requestformat">W3C Markup Validation Service Request Format</a>
  * @author wf
  *
  * the JaxB annotations of this Wrapper are designed to be able to unmarshal a W3C Markup Validation Service
  * Soap 1.2 response to this Java Object
  * 
  * on the class level the root node of the SOAP message is covered:
- * 
+ * <pre>
+ * {@code
  * <env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
  * ...
  * </env:Envelope>
+ * }
+ * </pre>
+ *  According to <a href="http://validator.w3.org/docs/api.html#requestformat">W3C Markup Validation Service Request Format documentation</a>:
+ *  A SOAP response for the validation of a document (invalid) will look like this:
+ * <pre>
+ * {@code
+ *  <?xml version="1.0" encoding="UTF-8"?>
+ *    <env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+ *      <env:Body>
+ *        <m:markupvalidationresponse
+ *          env:encodingStyle="http://www.w3.org/2003/05/soap-encoding" 
+ *          xmlns:m="http://www.w3.org/2005/10/markup-validator">
+ *            <m:uri>http://qa-dev.w3.org/wmvs/HEAD/dev/tests/xhtml1-bogus-element.html</m:uri>
+ *            <m:checkedby>http://validator.w3.org/</m:checkedby>
+ *            <m:doctype>-//W3C//DTD XHTML 1.0 Transitional//EN</m:doctype>
+ *            <m:charset>utf-8</m:charset>
+ *            <m:validity>false</m:validity>
+ *            <m:errors>
+ *              <m:errorcount>1</m:errorcount>
+ *              <m:errorlist>
+ *              		          
+ *                <m:error>
+ *                  <m:line>13</m:line>
+ *                  <m:col>6</m:col>                                           
+ *                  <m:source><![CDATA[
+ *                    &#60;foo<strong title="Position where error was detected.">&#62;</strong>This phrase is enclosed in a bogus FOO element.&#60;/foo&#62;
+ *                  ]]>
+ *                  </m:source>                                           
+ *                  <m:explanation>
+ *                    <![CDATA[
+ *                    <p> ... </p<p>
+ *                    ]]>
+ *                  </m:explanation>                                           
+ *                  <m:messageid>76</m:messageid>                                           
+ *                  <m:message>element "foo" undefined</m:message>
+ *               </m:error>
+ *          </m:errorlist>
+ *        </m:errors>
+ *        <m:warnings>
+ *          <m:warningcount>0</m:warningcount>
+ *          <m:warninglist>	        
+ *            ...		        
+ *          </m:warninglist>
+ *        </m:warnings>
+ *      </m:markupvalidationresponse>
+ *     </env:Body>
+ *  </env:Envelope>
+ *		}
+ * </pre>
+ *		the structure of this W3CValidator class is aligned to this format
  */
 @XmlRootElement(name = "Envelope", namespace = "http://www.w3.org/2003/05/soap-envelope")
 // no getters/setters are used - all fields are initialized to make this safe
 // setting should only be done via the check function 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class W3CValidator {
-	// set to true if Logging should be enabled
+	/** 
+	 * set to true if Logging should be enabled
+	 */
 	public static boolean debug=false;
 
-	// Logging
+	/**
+	 *  Logging may be enabled by setting debug to true
+	 */
 	protected static java.util.logging.Logger LOGGER = java.util.logging.Logger
 			.getLogger("com.bitplan.w3ccheck");
 	
@@ -116,82 +172,51 @@ public class W3CValidator {
 
 	} // check
 
-	/*
-	  According to http://validator.w3.org/docs/api.html#requestformat:
-	  A SOAP response for the validation of a document (invalid) will look like this:
-	  
-	  <?xml version="1.0" encoding="UTF-8"?>
-			<env:Envelope xmlns:env="http://www.w3.org/2003/05/soap-envelope">
-			<env:Body>
-			<m:markupvalidationresponse
-			env:encodingStyle="http://www.w3.org/2003/05/soap-encoding" 
-			xmlns:m="http://www.w3.org/2005/10/markup-validator">
-			    <m:uri>http://qa-dev.w3.org/wmvs/HEAD/dev/tests/xhtml1-bogus-element.html</m:uri>
-			    <m:checkedby>http://validator.w3.org/</m:checkedby>
-			    <m:doctype>-//W3C//DTD XHTML 1.0 Transitional//EN</m:doctype>
-			    <m:charset>utf-8</m:charset>
-			    <m:validity>false</m:validity>
-			    <m:errors>
-			        <m:errorcount>1</m:errorcount>
-			        <m:errorlist>
-			          
-			            <m:error>
-			                <m:line>13</m:line>
-			                <m:col>6</m:col>                                           
-			                <m:source>  
-			                <![CDATA[
-			                  &#60;foo<strong title="Position where error was detected.">&#62;</strong>This phrase is enclosed in a bogus FOO element.&#60;/foo&#62;
-			                  ]]>
-			                </m:source>                                           
-			                <m:explanation>
-			                  <![CDATA[
-			                    <p> ... </p<p>
-			                  ]]>
-			                </m:explanation>                                           
-			                <m:messageid>76</m:messageid>                                           
-			                <m:message>element "foo" undefined</m:message>
-			            </m:error>
-			           
-			        </m:errorlist>
-			    </m:errors>
-			    <m:warnings>
-			        <m:warningcount>0</m:warningcount>
-			        <m:warninglist>
-			        
-			        
-			        </m:warninglist>
-			    </m:warnings>
-			</m:markupvalidationresponse>
-			</env:Body>
-			</env:Envelope>
-			
-			the structure of this W3CValidator class is aligned to this format
-	*/
-	/* 
-	 * structure for the Body node of the message
+	
+	/**
+	 * field that holds the  structure for the Body node of the message
+	 * <pre>
+   * {@code
 	 * <env:Body>
 	 * ...
 	 * </env:Body>
+	 * }
+	 * </pre>
 	 */
 	@XmlElement(name = "Body")
 	// initialize Body
 	public Body body = new Body();
 
+	/**
+	 * structure for the Body node of the message
+	 * <pre>
+   * {@code
+	 * <env:Body>
+	 * ...
+	 * </env:Body>
+	 * }
+	 * </pre>
+	 */
 	@XmlRootElement(name = "Body", namespace = "http://www.w3.org/2003/05/soap-envelope")
 	@XmlAccessorType(XmlAccessType.FIELD)
 	public static class Body {
 
+		
 		@XmlElement(name = "markupvalidationresponse", namespace = "http://www.w3.org/2005/10/markup-validator")
 		public ValidationResponse response = new ValidationResponse();
 
-		@XmlAccessorType(XmlAccessType.FIELD)
 		/**
 		 * The main element of the validation response. Encloses all other information about the validation results.
 		 * @author wf
+		 * <pre>
+		 * {@code
 		 * <m:markupvalidationresponse env:encodingStyle="http://www.w3.org/2003/05/soap-encoding" xmlns:m="http://www.w3.org/2005/10/markup-validator">
 		 * ...
 		 * </m:markupvalidationresponse>
+		 * }
+		 * </pre>
 		 */
+		@XmlAccessorType(XmlAccessType.FIELD)
 		public static class ValidationResponse {
 			/**
 			 * the address of the document validated. Will (likely?) be upload://Form Submission if an uploaded document or fragment was validated. In EARL terms, this is the TestSubject. 
@@ -225,9 +250,13 @@ public class W3CValidator {
 
 			/**
 			 * Encapsulates all data about errors encountered through the validation process
+			 * <pre>
+       * {@code
 			 * <m:errors>
 			 * ...
 			 * </m:errors>
+			 * }
+			 * </pre>
 			 */
 			@XmlElement(namespace = "http://www.w3.org/2005/10/markup-validator")
 			public Errors errors = new Errors();
@@ -259,9 +288,13 @@ public class W3CValidator {
 
 			/**
 			 * Encapsulates all data about warnings encountered through the validation process
+			 * <pre>
+       * {@code
 			 * <m:warnings>
 			 * ...
 			 * </m:warnings>
+			 * }
+			 * </pre>
 			 */
 			@XmlElement(namespace = "http://www.w3.org/2005/10/markup-validator")
 			public Warnings warnings = new Warnings();

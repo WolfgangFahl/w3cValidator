@@ -19,6 +19,15 @@ see http://validator.w3.org/docs/
 This java Library calls the W3C Validator according to
 * http://validator.w3.org/docs/api.html
 
+Maven dependency:
+```
+<dependency>
+  <groupId>com.bitplan</groupId>
+  <artifactId>w3cValidator</artifactId>
+  <version>0.0.1</version>
+</dependency>
+```
+
 ## Example:
   To check some html code with an unclosed div tag with the validator
   at w3.org:

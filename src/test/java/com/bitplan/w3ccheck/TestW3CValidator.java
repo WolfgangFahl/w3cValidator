@@ -12,13 +12,17 @@ import com.bitplan.w3ccheck.W3CValidator.Body.ValidationResponse.Errors.Validati
 import com.bitplan.w3ccheck.W3CValidator.Body.ValidationResponse.Warnings.ValidationWarning;
 
 /**
- * test case for W3CValidator Java adapter
+ * test case for W3CValidator W3C Markup Validation service Java adapter
  * @author wf
  *
  */
 public class TestW3CValidator {
 
+	/**
+	 * the URL of the official W3C Markup Validation service
+	 */
 	public static final String url="http://validator.w3.org/check";
+	
 	@Test
 	public void testW3CValidator() throws Exception {
 		String preamble="<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n" + 
@@ -40,26 +44,27 @@ public class TestW3CValidator {
 		int[] expectedErrs={1,2};
 		int[] expectedWarnings={1,2};
 		int index=0;
+		System.out.println("Testing "+htmls.length+" html messages via "+url);
 		for (String html : htmls) {
 			W3CValidator checkResult = W3CValidator.check(url, html);
 			List<ValidationError> errlist = checkResult.body.response.errors.errorlist;
 			List<ValidationWarning> warnlist = checkResult.body.response.warnings.warninglist;
-			assertTrue(errlist.size()>=expectedErrs[index]);
 			Object first = errlist.get(0);
 			assertTrue("if first is a string, than moxy is not activated",first instanceof ValidationError);
 			//System.out.println(first.getClass().getName());
 			//System.out.println(first);
-			System.out.println("Validation result for test "+index+":");
+			System.out.println("Validation result for test "+(index+1)+":");
 			for (ValidationError err:errlist) {
 				System.out.println("\t"+err.toString());
 			}
-			assertTrue(warnlist.size()>=expectedWarnings[index]);
 			for (ValidationWarning warn:warnlist) {
 				System.out.println("\t"+warn.toString());
 			}
 			System.out.println();
+			assertTrue(errlist.size()>=expectedErrs[index]);
+			assertTrue(warnlist.size()>=expectedWarnings[index]);
 			index++;
 		}
 	} // testW3CValidator
 
-}
+} // TestW3CValidator

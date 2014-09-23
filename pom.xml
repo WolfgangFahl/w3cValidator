@@ -5,7 +5,7 @@
 	<artifactId>w3cValidator</artifactId>
 	<packaging>jar</packaging>
 	<name>BITPlan-W3CValidator</name>
-	<version>0.0.1</version>
+	<version>0.0.2-Snapshot</version>
 	<description>Java library to call W3C Validator check</description>
 	<url>https://github.com/WolfgangFahl/w3cValidator</url>
 	<licenses>

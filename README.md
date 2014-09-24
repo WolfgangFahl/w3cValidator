@@ -13,6 +13,7 @@ validator at http://validator.w3.org/check or a copy of this service installed i
 * Open Source hosted at https://github.com/WolfgangFahl/w3cValidator
 * GPL 3.0 License 
 * Maven based Java project including JUnit 4 tests.
+* Project page at http://wolfgangfahl.github.io/w3cValidator/
 
 Available at http://search.maven.org/#artifactdetails|com.bitplan|w3cValidator|0.0.1|jar
 

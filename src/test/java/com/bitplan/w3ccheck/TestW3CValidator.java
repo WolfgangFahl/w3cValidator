@@ -17,8 +17,6 @@ import com.bitplan.w3ccheck.W3CValidator.Body.ValidationResponse.Warnings.Valida
  *
  */
 public class TestW3CValidator {
-
-
 	
 	/**
 	 * test the w3cValidator interface with some html code

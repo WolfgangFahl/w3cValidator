@@ -64,6 +64,7 @@ This java Library calls the W3C Validator according to
   with line col and message for each error.
   
 ### Example Output (from JUnit tests):
+```	
 Validation result for test 1:
 	ValidationError line 10 col 9:'end tag for "DIV" omitted, but its declaration does not permit this'
 	ValidationWarning line 0 col 0:'Using Direct Input mode: UTF-8 character encoding assumed'
@@ -73,7 +74,7 @@ Validation result for test 2:
 	ValidationError line 1 col 75:'Unclosed element div.'
 	ValidationWarning line 0 col 0:'No Character encoding declared at document level'
 	ValidationWarning line 0 col 0:'Using Direct Input mode: UTF-8 character encoding assumed'
-  
+```	 
   
 ## Version history
 * 0.0.1 - 2014-09-22: first published version

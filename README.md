@@ -22,7 +22,7 @@ Maven dependency:
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>w3cValidator</artifactId>
-  <version>0.0.1</version>
+  <version>0.0.2</version>
 </dependency>
 ```
 
@@ -63,7 +63,18 @@ This java Library calls the W3C Validator according to
   e.g. checkResult.body.response.errors.errorlist will contain a list of ValidationErrors
   with line col and message for each error.
   
-  
+### Example Output (from JUnit tests):
+Validation result for test 1:
+	ValidationError line 10 col 9:'end tag for "DIV" omitted, but its declaration does not permit this'
+	ValidationWarning line 0 col 0:'Using Direct Input mode: UTF-8 character encoding assumed'
 
+Validation result for test 2:
+	ValidationError line 1 col 82:'End tag for  body seen, but there were unclosed elements.'
+	ValidationError line 1 col 75:'Unclosed element div.'
+	ValidationWarning line 0 col 0:'No Character encoding declared at document level'
+	ValidationWarning line 0 col 0:'Using Direct Input mode: UTF-8 character encoding assumed'
+  
+  
 ## Version history
-* 0.0.1 - 2014-09-22      : first published version
+* 0.0.1 - 2014-09-22: first published version
+* 0.0.2 - 2014-09-26: fixes issue with 0x0 unicode in html 

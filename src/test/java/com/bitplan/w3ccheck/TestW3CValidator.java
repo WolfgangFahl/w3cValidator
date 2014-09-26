@@ -18,11 +18,7 @@ import com.bitplan.w3ccheck.W3CValidator.Body.ValidationResponse.Warnings.Valida
  */
 public class TestW3CValidator {
 
-	/**
-	 * the URL of the official W3C Markup Validation service
-	 * if you'd like to run the tests against your own installation you might want to modify this
-	 */
-	public static final String url="http://validator.w3.org/check";
+
 	
 	/**
 	 * test the w3cValidator interface with some html code
@@ -44,18 +40,21 @@ public class TestW3CValidator {
 				preamble+
 				"    <div>\n"+
 				footer,
-				"<!DOCTYPE html><html><head><title>test W3CChecker</title></head><body><div></body></html>"
+				"<!DOCTYPE html><html><head><title>test W3CChecker</title></head><body><div></body></html>",
+				preamble+footer+"\u0000"
 		};
-		int[] expectedErrs={1,2};
-		int[] expectedWarnings={1,2};
+		int[] expectedErrs={1,2,0};
+		int[] expectedWarnings={1,2,1};
 		int index=0;
-		System.out.println("Testing "+htmls.length+" html messages via "+url);
+		System.out.println("Testing "+htmls.length+" html messages via "+W3CValidator.url);
 		for (String html : htmls) {
-			W3CValidator checkResult = W3CValidator.check(url, html);
+			W3CValidator checkResult = W3CValidator.check(html);
 			List<ValidationError> errlist = checkResult.body.response.errors.errorlist;
 			List<ValidationWarning> warnlist = checkResult.body.response.warnings.warninglist;
-			Object first = errlist.get(0);
-			assertTrue("if first is a string, than moxy is not activated",first instanceof ValidationError);
+			if (errlist.size()>0) {
+				Object first = errlist.get(0);
+				assertTrue("if first is a string, than moxy is not activated",first instanceof ValidationError);
+			}
 			//System.out.println(first.getClass().getName());
 			//System.out.println(first);
 			System.out.println("Validation result for test "+(index+1)+":");

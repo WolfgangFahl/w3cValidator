@@ -8,6 +8,8 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.JAXBContext;
@@ -110,6 +112,27 @@ public class W3CValidator {
 			.getLogger("com.bitplan.w3ccheck");
 	
 	/**
+	 * the URL of the official W3C Markup Validation service
+	 * if you'd like to run the tests against your own installation you might want to modify this
+	 */
+	public static String url="http://validator.w3.org/check";
+	
+	/**
+	 * create a W3CValidator result for the default url http://validator.w3.org/check  with the given html
+	 * 
+	 * @param html - the html code to be checked
+	 * @return - a W3CValidator response according to the SOAP response format or null if the
+	 * http response status of the Validation service is other than 200
+	 * explained at response http://validator.w3.org/docs/api.html#requestformat 
+	 * @throws JAXBException if there is something wrong with the response message so that it
+	 * can not be unmarshalled
+	 */
+	public static W3CValidator check(String html) throws JAXBException {
+		W3CValidator result=check(url,html);
+		return result;
+	}
+	
+	/**
 	 * create a W3CValidator result for the given url with the given html
 	 * 
 	 * @param url - the url of the validator e.g. "http://validator.w3.org/check"
@@ -137,6 +160,14 @@ public class W3CValidator {
 		// the SOAP1.2 interface will be triggered. See the SOAP 1.2 response format description at
 		//  http://validator.w3.org/docs/api.html#requestformat
 		form.field("output", "soap12");
+	
+		// make sure Unicode 0x0 chars are removed from html (if any)
+		// see https://github.com/WolfgangFahl/w3cValidator/issues/1
+		Pattern pattern = Pattern.compile("[\\000]*");
+		Matcher matcher = pattern.matcher(html);
+		if (matcher.find()) {
+		   html = matcher.replaceAll("");
+		}
 		
 		// The document to validate, POSTed as multipart/form-data
 		FormDataBodyPart fdp = new FormDataBodyPart("uploaded_file",

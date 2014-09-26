@@ -26,6 +26,10 @@
 		<developerConnection>scm:git:git@github.com:WolfgangFahl/w3cValidator.git</developerConnection>
 		<url>https://github.com/WolfgangFahl/w3cValidator</url>
 	</scm>
+	<issueManagement>
+		<url>https://github.com/WolfgangFahl/w3cValidator/issues</url>
+		<system>GitHub</system>
+	</issueManagement>
 	<developers>
 		<developer>
 			<id>wf</id>

@@ -12,7 +12,7 @@ validator at http://validator.w3.org/check or a copy of this service installed i
 ### Project
 * Open Source hosted at https://github.com/WolfgangFahl/w3cValidator
 * Issues via https://github.com/WolfgangFahl/w3cValidator/issues
-* LGPL 3.0 License 
+* LGPL 3.0 License (GNU LESSER GENERAL PUBLIC LICENSE)
 * Maven based Java project including JUnit 4 tests.
 * Project page at http://wolfgangfahl.github.io/w3cValidator/
 

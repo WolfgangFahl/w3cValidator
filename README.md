@@ -16,14 +16,14 @@ validator at http://validator.w3.org/check or a copy of this service installed i
 * Maven based Java project including JUnit 4 tests.
 * Project page at http://wolfgangfahl.github.io/w3cValidator/
 
-Available at http://search.maven.org/#artifactdetails|com.bitplan|w3cValidator|0.0.1|jar
+Available at http://search.maven.org/#artifactdetails|com.bitplan|w3cValidator|0.0.3|jar
 
 Maven dependency:
 ```
 <dependency>
   <groupId>com.bitplan</groupId>
   <artifactId>w3cValidator</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
 </dependency>
 ```
 
@@ -80,3 +80,4 @@ Validation result for test 2:
 ## Version history
 * 0.0.1 - 2014-09-22: first published version
 * 0.0.2 - 2014-09-26: fixes issue with 0x0 unicode in html 
+* 0.0.3 - 2016-06-15: upgrades jersey to 1.19.1 and eclipselink to 2.6.3

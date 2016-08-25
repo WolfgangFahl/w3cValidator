@@ -38,15 +38,19 @@ public class TestW3CValidator {
 				preamble+
 				"    <div>\n"+
 				footer,
-				"<!DOCTYPE html><html><head><title>test W3CChecker</title></head><body><div></body></html>",
-				preamble+footer+"\u0000"
+				// "<!DOCTYPE html><html><head><title>test W3CChecker</title></head><body><div></body></html>",
+				preamble+footer+"\u0000",
+				preamble+
+				"<a href='http://www.bitplan.com'This is not an anchor</a>"
+				+footer
 		};
-		int[] expectedErrs={1,2,0};
-		int[] expectedWarnings={1,2,1};
+		int[] expectedErrs={1,0,5,0};
+		int[] expectedWarnings={1,1,2,0};
 		int index=0;
 		System.out.println("Testing "+htmls.length+" html messages via "+W3CValidator.url);
 		for (String html : htmls) {
 			W3CValidator checkResult = W3CValidator.check(html);
+			assertNotNull("checkResult should not be null",checkResult);
 			List<ValidationError> errlist = checkResult.body.response.errors.errorlist;
 			List<ValidationWarning> warnlist = checkResult.body.response.warnings.warninglist;
 			if (errlist.size()>0) {

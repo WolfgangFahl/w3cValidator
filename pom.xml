@@ -42,6 +42,9 @@
 		<!-- http://stackoverflow.com/questions/3017695/how-to-configure-encoding-in-maven -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- Supported Java version -->
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 		<!-- github server corresponds to entry in ~/.m2/settings.xml -->
 		<github.global.server>github</github.global.server>
 		<!-- versions of other libraries to be used -->

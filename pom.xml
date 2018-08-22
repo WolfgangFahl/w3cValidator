@@ -22,7 +22,7 @@
 	<description>Java library to call W3C Validator check</description>
 	<properties>
 		<!-- for parent pom to work -->
-		<github.project>com.bitplan.vzjava</github.project>
+		<github.project>w3cValidator</github.project>
 		<github.owner>WolfgangFahl</github.owner>
 		<!--  for readme generation -->
 		<documentation.wiki>http://www.bitplan.com/W3cValidator</documentation.wiki>

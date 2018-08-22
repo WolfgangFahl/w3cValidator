@@ -1,16 +1,16 @@
-### com.bitplan.vzjava
+### w3cValidator
 [Java library to call W3C Validator check](http://www.bitplan.com/W3cValidator) 
 
-[![Travis (.org)](https://img.shields.io/travis/WolfgangFahl/com.bitplan.vzjava.svg)](https://travis-ci.org/WolfgangFahl/com.bitplan.vzjava)
+[![Travis (.org)](https://img.shields.io/travis/WolfgangFahl/w3cValidator.svg)](https://travis-ci.org/WolfgangFahl/w3cValidator)
 [![Maven Central](https://img.shields.io/maven-central/v/com.bitplan/w3cValidator.svg)](https://search.maven.org/artifact/com.bitplan/w3cValidator/0.0.5/jar)
-[![GitHub issues](https://img.shields.io/github/issues/WolfgangFahl/com.bitplan.vzjava.svg)](https://github.com/WolfgangFahl/com.bitplan.vzjava/issues)
-[![GitHub issues](https://img.shields.io/github/issues-closed/WolfgangFahl/com.bitplan.vzjava.svg)](https://github.com/WolfgangFahl/com.bitplan.vzjava/issues/?q=is%3Aissue+is%3Aclosed)
-[![GitHub](https://img.shields.io/github/license/WolfgangFahl/com.bitplan.vzjava.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+[![GitHub issues](https://img.shields.io/github/issues/WolfgangFahl/w3cValidator.svg)](https://github.com/WolfgangFahl/w3cValidator/issues)
+[![GitHub issues](https://img.shields.io/github/issues-closed/WolfgangFahl/w3cValidator.svg)](https://github.com/WolfgangFahl/w3cValidator/issues/?q=is%3Aissue+is%3Aclosed)
+[![GitHub](https://img.shields.io/github/license/WolfgangFahl/w3cValidator.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![BITPlan](http://wiki.bitplan.com/images/wiki/thumb/3/38/BITPlanLogoFontLessTransparent.png/198px-BITPlanLogoFontLessTransparent.png)](http://www.bitplan.com)
 
 ### Documentation
 * [Wiki](http://www.bitplan.com/W3cValidator)
-* [com.bitplan.vzjava Project pages](https://WolfgangFahl.github.io/w3cValidator)
+* [w3cValidator Project pages](https://WolfgangFahl.github.io/w3cValidator)
 * [Javadoc](https://WolfgangFahl.github.io/w3cValidator/apidocs/index.html)
 * [Test-Report](https://WolfgangFahl.github.io/w3cValidator/surefire-report.html)
 ### Maven dependency
@@ -28,8 +28,8 @@ Maven dependency
 
 ### How to build
 ```
-git clone https://github.com/WolfgangFahl/com.bitplan.vzjava
-cd com.bitplan.vzjava
+git clone https://github.com/WolfgangFahl/w3cValidator
+cd w3cValidator
 mvn install
 ```
 

@@ -24,6 +24,8 @@
 		<!-- for parent pom to work -->
 		<github.project>com.bitplan.vzjava</github.project>
 		<github.owner>WolfgangFahl</github.owner>
+		<!--  for readme generation -->
+		<documentation.wiki>http://www.bitplan.com/W3cValidator</documentation.wiki>
 		<!-- versions of other libraries to be used -->
 		<jersey.version>1.19.1</jersey.version>
 		<moxy.version>2.6.3</moxy.version>

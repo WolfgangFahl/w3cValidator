@@ -17,7 +17,7 @@ This java Library calls the W3C Validator according to
   To check some html code with an unclosed div tag with the validator
   at w3.org:
 
-```
+```Java
   // url to use - modify if you have your own installation
   public static final String url="http://validator.w3.org/check";
   
